@@ -5,51 +5,63 @@ function App() {
 
   let [list, setlist] = useState([])
   let [InputItem, setInputItem] = useState("")
-  let [updatebtn , setupdatebtn] = useState(true)
+  let [EditTodo, setEditTodo] = useState(null)
 
   function inputItem(e) {
     setInputItem(e.target.value);
   }
 
   function addItem() {
-    var copyList = [...list]
-    copyList.push(InputItem)
-    setlist(copyList)
-    setInputItem(' ')
+    if (InputItem !== "") {
+
+      if (EditTodo !== null) {
+        var copyList = [...list];
+        copyList[EditTodo] = InputItem;
+        setlist(copyList);
+        setEditTodo(null);
+      } else {
+          setlist([...list , InputItem]);
+      }
+      setInputItem(' ')
+    }
 
   }
-  function EditItem(value) {
-    setInputItem(value)
-    setupdatebtn(!updatebtn)
+
+  function EditItem(index) {
+    setEditTodo(index)
+    setInputItem(list[index])
+
   }
   function deleitem(index) {
     var CopyItem = [...list];
     CopyItem.splice(index, 1);
     setlist(CopyItem);
+    setEditTodo(null)
   }
   function deleteAllItem() {
     setlist([])
   }
-  function updateItem(){
-    
 
-  }
 
   return (
     <div className="App">
 
-      <h1>TODO APP</h1>
-      <input onChange={inputItem} value={InputItem} type="text" id="" />
-      {/* <button onClick={addItem}>Add Item</button> */}
-      {
-        updatebtn ?  <button onClick={addItem}>Add Item</button> : <button onClick={updateItem}>Update Item</button>
-      }
-      <button onClick={deleteAllItem}>Delete All</button>
+      <h1 id='h1'>TODO APP</h1>
+      <div className='ChildDiv'>
+        <input onChange={inputItem} placeholder='Add Item' value={InputItem} type="text" id="inp" />
+        <div className='btnDiv'>
+          <button onClick={addItem} id='addbtn'>{EditTodo !== null ? "Edit Todo" : "Add Todo"}</button>
+          
+          <button id='DelAllbtn' onClick={deleteAllItem} style={{ display: list.length > 0 ? "block" : "none" }}>Delete All</button>
 
-      <ul>
+        </div>
+
+      </div>
+      
+      <ul className='ul'>
         {
           list.map((value, index) => {
-            return <li key={index}>{value} <button onClick={() => EditItem(value)}>Edit</button> <button onClick={() => deleitem(index)}>Delete</button></li>
+            return <div><li className='Li' key={index}>{value} <button className='libtn' onClick={() => EditItem(index)}>Edit</button> <button onClick={() => deleitem(index)} className='libtn'>Delete</button></li></div> 
           })
         }
       </ul>
