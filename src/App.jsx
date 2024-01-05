@@ -1,5 +1,6 @@
-import './App.css';
 import { useState } from 'react';
+import './App.css';
+
 
 function App() {
 
@@ -24,7 +25,9 @@ function App() {
       }
       setInputItem(' ')
     }
-
+    else{
+      alert("Please Enter The Value");
+    }
   }
 
   function EditItem(index) {
@@ -44,9 +47,9 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="main container">
 
-      <h1 id='h1'>TODO APP</h1>
+      <h1 id='h1'>TO-DO APP</h1>
       <div className='ChildDiv'>
         <input onChange={inputItem} placeholder='Add Item' value={InputItem} type="text" id="inp" />
         <div className='btnDiv'>
@@ -61,7 +64,7 @@ function App() {
       <ul className='ul'>
         {
           list.map((value, index) => {
-            return <div><li className='Li' key={index}>{value} <button className='libtn' onClick={() => EditItem(index)}>Edit</button> <button onClick={() => deleitem(index)} className='libtn'>Delete</button></li></div> 
+            return <div><li className='Li' key={index}>{value} <button className='libtn editbtn' onClick={() => EditItem(index)}>Edit</button> <button onClick={() => deleitem(index)} className='libtn delbtn'>Delete</button></li></div> 
           })
         }
       </ul>
