@@ -1,14 +1,14 @@
-.main{
+.main {
   background-color: white;
   margin: auto;
   margin-top: 20vh;
+  margin-bottom: 10vh;
   width: 50%;
   border-radius: 50px 10px;
   padding: 10px;
   padding-bottom: 30px;
-  box-shadow:  0px 0px 30px black;
+  box-shadow: 0px 0px 30px black;
 }
-
 
 .App-logo {
   height: 40vmin;
@@ -59,13 +59,11 @@ h1 {
   font-family: cursive;
   font-weight: bolder;
   text-shadow: 1px 1px 3px #383d46;
-
 }
 
-.ChildDiv {
+.tryDiv {
   display: flex;
   justify-content: space-around !important;
-
 }
 
 #inp {
@@ -104,9 +102,9 @@ h1 {
   padding: 7px;
   width: 80px;
   border-radius: 5px;
-
 }
-#DelAllbtn:hover{
+
+#DelAllbtn:hover {
   box-shadow: inset 0px 0px 8px #282c34;
 }
 
@@ -124,7 +122,6 @@ h1 {
 }
 
 .Li {
-  /* border: 1px solid black; */
   border-radius: 360px;
   margin-top: 15px;
   word-break: break-all;
@@ -132,17 +129,21 @@ h1 {
   list-style-type: decimal;
   box-shadow: 0px 0px 5px #272b31;
   font-family: monospace;
+}
 
-
+.Li:hover {
+  background-color: #383d4633;
+  box-shadow: inset 0px 0px 5px #272b31;
+  transform: scale(0.95);
+  transition: 0.5s;
 }
 
 .libtn {
   float: right;
-
 }
 
 .delbtn {
-  
+
   margin-right: 10px;
   background-color: rgb(180, 15, 15);
   color: white;
@@ -156,7 +157,6 @@ h1 {
   background-color: rgb(192, 12, 12);
   transform: scale(0.9);
   transition: 0.7s;
-
 }
 
 .editbtn {
@@ -175,37 +175,69 @@ h1 {
   transition: 0.7s;
 }
 
+/* Media Querry */
 
-
-@media screen and (max-width : 800px) {
-  .main{
+@media screen and (max-width : 900px) {
+  .main {
     width: 95%;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
   }
-  #inp{
+
+  #inp {
     border: 1px solid black;
     width: 100%;
     margin-left: 0;
     border-radius: 10px;
   }
-  .ChildDiv{
+
+  .tryDiv {
     display: block;
   }
-  .btnDiv{
+
+  .btnDiv {
     margin-top: 25px;
     margin-left: 0;
   }
-  .Li{
+
+  .Li {
     height: auto;
+  }
+
+  .delbtn {
+    font-size: small;
+    width: 55px;
+  }
+
+  .editbtn {
+    font-size: small;
+    width: 55px;
   }
 }
 
-@media screen and (max-width : 800px) {
-  .delbtn{
-    font-size: small;
-    width: 55px;
+@media screen and (max-width : 300px) {
+  #addbtn {
+    padding: 3px;
+    font-size: 15px;
   }
-  .editbtn{
-    font-size: small;
-    width: 55px;
+
+  #DelAllbtn {
+    padding: 3px;
+    font-size: 15px;
+  }
+
+  .delbtn {
+    width: 40px;
+    font-size: 10px;
+    margin-left: 0px;
+  }
+
+  .editbtn {
+    width: 40px;
+    font-size: 10px;
+  }
+  .libtn{
+    position: relative;
+    left: 10px;
   }
 }

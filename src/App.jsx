@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-
+import Swal from 'sweetalert2'
 
 function App() {
 
@@ -20,13 +20,26 @@ function App() {
         copyList[EditTodo] = InputItem;
         setlist(copyList);
         setEditTodo(null);
+        Swal.fire({
+          position: "top-center",
+          icon: "success",
+          title: "Your ToDo has been Updated.",
+          showConfirmButton: false,
+          timer: 2000
+        })
+        setInputItem('')
       } else {
-          setlist([...list , InputItem]);
+        setlist([...list, InputItem]);
+        setInputItem('')
       }
-      setInputItem(' ')
     }
-    else{
-      alert("Please Enter The Value");
+    else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter the Value!",
+      });
+
     }
   }
 
@@ -43,6 +56,13 @@ function App() {
   }
   function deleteAllItem() {
     setlist([])
+    Swal.fire({
+      position: "top-center",
+      icon: "success",
+      title: "Your ToDos has been deleted",
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
 
 
@@ -50,21 +70,21 @@ function App() {
     <div className="main container">
 
       <h1 id='h1'>TO-DO APP</h1>
-      <div className='ChildDiv'>
+      <div className='tryDiv'>
         <input onChange={inputItem} placeholder='Add Item' value={InputItem} type="text" id="inp" />
         <div className='btnDiv'>
           <button onClick={addItem} id='addbtn'>{EditTodo !== null ? "Edit Todo" : "Add Todo"}</button>
-          
+
           <button id='DelAllbtn' onClick={deleteAllItem} style={{ display: list.length > 0 ? "block" : "none" }}>Delete All</button>
 
         </div>
 
       </div>
-      
+
       <ul className='ul'>
         {
           list.map((value, index) => {
-            return <div><li className='Li' key={index}>{value} <button className='libtn editbtn' onClick={() => EditItem(index)}>Edit</button> <button onClick={() => deleitem(index)} className='libtn delbtn'>Delete</button></li></div> 
+            return <div key={index}><li className='Li' key={index}>{value} <button className='libtn editbtn' onClick={() => EditItem(index)}>Edit</button> <button onClick={() => deleitem(index)} className='libtn delbtn'>Delete</button></li></div>
           })
         }
       </ul>
